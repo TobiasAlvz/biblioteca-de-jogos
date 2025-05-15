@@ -1,12 +1,37 @@
-# React + Vite
+# Biblioteca de Jogos React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React com Vite para gerenciar uma biblioteca de jogos clássicos, com lista inicial, adição via seleção e remoção. Dados persistidos no localStorage. Tema escuro e estilização modular com CSS Modules.
 
-Currently, two official plugins are available:
+## Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18  
+- Vite (HMR rápido)  
+- CSS Modules  
+- JavaScript ES6+
 
-## Expanding the ESLint configuration
+## Rodando localmente
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+Abra http://localhost:3000 no navegador.
+
+Estrutura
+src/components/ — componentes React com CSS Modules
+
+src/data/initialGames.js — dados iniciais
+
+src/App.jsx — componente principal
+
+src/main.jsx — entrada React
+
+Melhorias possíveis
+Busca e filtro
+
+Paginação
+
+Integração com APIs externas
+
+Migração para TypeScript
+
+Testes automatizados
