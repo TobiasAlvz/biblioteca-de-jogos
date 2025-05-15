@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./GameForm.module.css";
 
-const GameForm = ({ onAdd, initialGames }) => {
+const GameForm = ({ onAdd, initialGames, currentGames }) => {
   const [selectedTitle, setSelectedTitle] = useState("");
   const [cover, setCover] = useState("");
   const [error, setError] = useState("");
@@ -23,13 +23,21 @@ const GameForm = ({ onAdd, initialGames }) => {
       setError("Por favor, selecione um título válido.");
       return;
     }
-    setError("");
-    onAdd({
+
+    const result = onAdd({
       title: game.title,
       cover: game.coverImage,
       releaseYear: game.releaseYear,
       description: game.description,
     });
+
+    if (result?.error) {
+      setError(result.error);
+      return;
+    }
+
+    setError("");
+    setSelectedTitle("");
   };
 
   return (
@@ -51,7 +59,12 @@ const GameForm = ({ onAdd, initialGames }) => {
       </label>
       <label className={styles.label}>
         URL da Capa:
-        <input type="text" value={cover} readOnly className={styles.input} />
+        <input
+          type="text"
+          value={cover}
+          readOnly
+          className={styles.input}
+        />
       </label>
       {error && <p className={styles.error}>{error}</p>}
       <button type="submit" className={styles.submitButton}>
