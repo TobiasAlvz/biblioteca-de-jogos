@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import initialGames from "./data/initialGames";
+import GameForm from "./components/GameForm";
+import GameList from "./components/GameList";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [games, setGames] = useState(() => {
+    const stored = localStorage.getItem("obc-game-lib");
+    if (stored) return JSON.parse(stored);
+    localStorage.setItem("obc-game-lib", JSON.stringify(initialGames));
+    return initialGames;
+  });
+
+  const addGame = ({ title, cover }) => {
+    const id = Math.floor(Math.random() * 1000000);
+    const newGame = {
+      id,
+      title,
+      coverImage: cover,
+      releaseYear: new Date().getFullYear(),
+      description: "Novo jogo adicionado pelo usuário.",
+    };
+    const updatedGames = [...games, newGame];
+    setGames(updatedGames);
+    localStorage.setItem("obc-game-lib", JSON.stringify(updatedGames));
+  };
+
+  const removeGame = (id) => {
+    const updatedGames = games.filter((g) => g.id !== id);
+    setGames(updatedGames);
+    localStorage.setItem("obc-game-lib", JSON.stringify(updatedGames));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <main className="app">
+      <h1>Biblioteca de Jogos</h1>
+      <GameForm onAdd={addGame} />
+      <GameList games={games} onRemove={removeGame} />
+    </main>
+  );
+};
 
-export default App
+export default App;
