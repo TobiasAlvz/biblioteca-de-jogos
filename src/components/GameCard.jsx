@@ -1,15 +1,19 @@
-
-import "./GameCard.css";
+import styles from "./GameCard.module.css";
 
 const GameCard = ({ game, onRemove }) => {
   return (
-    <div className="game-card">
+    <div className={styles.gameCard}>
       <img src={game.coverImage} alt={`Capa de ${game.title}`} />
-      <div className="game-info">
+      <div className={styles.gameInfo}>
         <h2>{game.title}</h2>
-        <p className="year">{game.releaseYear}</p>
-        <p className="description">{game.description}</p>
-        <button onClick={() => onRemove(game.id)}>Remover</button>
+        <p className={styles.year}>{game.releaseYear}</p>
+        <p className={styles.description}>{game.description}</p>
+        <button
+          className={styles.removeButton}
+          onClick={() => onRemove(game.id)}
+        >
+          Remover
+        </button>
       </div>
     </div>
   );

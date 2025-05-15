@@ -1,36 +1,62 @@
-import "./GameForm.css";
+import { useState, useEffect } from "react";
+import styles from "./GameForm.module.css";
 
-const GameForm = ({ onAdd }) => {
-  const [title, setTitle] = useState("");
+const GameForm = ({ onAdd, initialGames }) => {
+  const [selectedTitle, setSelectedTitle] = useState("");
   const [cover, setCover] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const game = initialGames.find((g) => g.title === selectedTitle);
+    if (game) {
+      setCover(game.coverImage);
+      setError("");
+    } else {
+      setCover("");
+    }
+  }, [selectedTitle, initialGames]);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    if (!title || !cover) return;
-    onAdd({ title, cover });
-    setTitle("");
-    setCover("");
+    const game = initialGames.find((g) => g.title === selectedTitle);
+    if (!game) {
+      setError("Por favor, selecione um título válido.");
+      return;
+    }
+    setError("");
+    onAdd({
+      title: game.title,
+      cover: game.coverImage,
+      releaseYear: game.releaseYear,
+      description: game.description,
+    });
   };
 
   return (
-    <form className="game-form" onSubmit={handleSubmit}>
-      <label>
+    <form className={styles.gameForm} onSubmit={handleSubmit}>
+      <label className={styles.label}>
         Título:
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <select
+          className={styles.select}
+          value={selectedTitle}
+          onChange={(e) => setSelectedTitle(e.target.value)}
+        >
+          <option value="">-- Selecione um jogo --</option>
+          {initialGames.map((game) => (
+            <option key={game.id} value={game.title}>
+              {game.title}
+            </option>
+          ))}
+        </select>
       </label>
-      <label>
+      <label className={styles.label}>
         URL da Capa:
-        <input
-          type="text"
-          value={cover}
-          onChange={(e) => setCover(e.target.value)}
-        />
+        <input type="text" value={cover} readOnly className={styles.input} />
       </label>
-      <button type="submit">Adicionar Jogo</button>
+      {error && <p className={styles.error}>{error}</p>}
+      <button type="submit" className={styles.submitButton}>
+        Adicionar Jogo
+      </button>
     </form>
   );
 };

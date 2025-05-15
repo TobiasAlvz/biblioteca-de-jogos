@@ -1,0 +1,55 @@
+.gameForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  background-color: #2c2c2c;
+  padding: 20px;
+  border-radius: 8px;
+  color: #f0f0f0;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.select,
+.input {
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 14px;
+  appearance: none; /* Remove setinha padrão, para customização */
+}
+
+.select:focus,
+.input:focus {
+  outline: none;
+  border-color: #0984e3;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #0868b6;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: -8px;
+}

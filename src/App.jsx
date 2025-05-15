@@ -1,6 +1,8 @@
 import initialGames from "./data/initialGames";
 import GameForm from "./components/GameForm";
 import GameList from "./components/GameList";
+import { useState } from "react";
+import "./index.css";
 
 const App = () => {
   const [games, setGames] = useState(() => {
@@ -10,14 +12,14 @@ const App = () => {
     return initialGames;
   });
 
-  const addGame = ({ title, cover }) => {
+  const addGame = ({ title, cover, releaseYear, description }) => {
     const id = Math.floor(Math.random() * 1000000);
     const newGame = {
       id,
       title,
       coverImage: cover,
-      releaseYear: new Date().getFullYear(),
-      description: "Novo jogo adicionado pelo usuário.",
+      releaseYear,
+      description,
     };
     const updatedGames = [...games, newGame];
     setGames(updatedGames);
@@ -33,7 +35,7 @@ const App = () => {
   return (
     <main className="app">
       <h1>Biblioteca de Jogos</h1>
-      <GameForm onAdd={addGame} />
+      <GameForm onAdd={addGame} initialGames={initialGames} />
       <GameList games={games} onRemove={removeGame} />
     </main>
   );

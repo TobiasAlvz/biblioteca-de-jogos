@@ -1,0 +1,55 @@
+.gameCard {
+  border: 1px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #1e1e1e;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  margin-bottom: 16px;
+  transition: transform 0.2s ease;
+}
+
+.gameCard:hover {
+  transform: scale(1.01);
+}
+
+.gameCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gameInfo {
+  padding: 14px;
+  color: #eee;
+}
+
+.gameInfo h2 {
+  font-size: 20px;
+  margin: 0 0 6px;
+  color: #f4f4f4;
+}
+
+.year {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.description {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #ccc;
+}
+
+.removeButton {
+  background-color: #d63031;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.removeButton:hover {
+  background-color: #b71c1c;
+}

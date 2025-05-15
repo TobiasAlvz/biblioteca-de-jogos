@@ -1,4 +1,3 @@
-export default function initialGames () {}
 const initialGames = [
   {
     id: 1,
@@ -71,3 +70,5 @@ const initialGames = [
     description: 'An action-based role-playing game with Disney and Final Fantasy characters.',
   },
 ];
+
+export default initialGames;

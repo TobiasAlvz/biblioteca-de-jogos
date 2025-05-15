@@ -1,9 +1,9 @@
 import GameCard from "./GameCard";
-import "./GameList.css";
+import styles from "./GameList.module.css";
 
 const GameList = ({ games, onRemove }) => {
   return (
-    <div className="game-list">
+    <div className={styles.gameList}>
       {games.map((game) => (
         <GameCard key={game.id} game={game} onRemove={onRemove} />
       ))}
