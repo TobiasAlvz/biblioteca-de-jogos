@@ -16,22 +16,4 @@ npm install
 npm run dev
 Abra http://localhost:3000 no navegador.
 
-Estrutura
-src/components/ — componentes React com CSS Modules
-
-src/data/initialGames.js — dados iniciais
-
-src/App.jsx — componente principal
-
-src/main.jsx — entrada React
-
-Melhorias possíveis
-Busca e filtro
-
-Paginação
-
-Integração com APIs externas
-
-Migração para TypeScript
-
-Testes automatizados
+(https://feed-de-comentarios-zeta.vercel.app/)
